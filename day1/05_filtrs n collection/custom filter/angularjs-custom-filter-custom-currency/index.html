@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+
+
+    <title>AngularJS Custom Filter - Custom Currency</title>
+    
+    
+    
+    <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
+
+        <link rel="stylesheet" href="css/style.css">
+
+    
+    
+    
+  </head>
+
+  <body>
+
+    <div class="container">
+  <div class="row">
+    <div class="col-lg-6 col-lg-offset-3">
+      <div ng-app="filters">
+        <div ng-controller="demo">
+          <div class="panel panel-default">
+             <div class="panel-body">
+               <h4 class="text-center">AngularJS Filter - Custom Currency</h4>
+               <p><strong>Original:</strong></p>
+               <ul class="list">
+                 <li>{{example1}}</li>
+               </ul>
+               <p><strong>Custom Currency Filter:</strong></p>
+               <ul class="list">
+                 <li>{{example1 | customCurrency}} - Default</li>
+                 <li>{{example1 | customCurrency:'€'}} - Custom Symbol</li>
+                 <li>{{example1 | customCurrency:'€':false}} - Custom Symbol and Custom Location</li>
+               </ul>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row credits">
+      <div class="col-lg-6 col-lg-offset-3 text-center">
+         
+    </div>
+  </div>
+</div>
+    <script src='http://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js'></script>
+
+    
+    <script src="js/index.js"></script>
+
+    
+    
+    
+  </body>
+</html>

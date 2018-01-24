@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Creating Directives Demo-Powered by TKHTS.COM</title>
+    <script type="text/javascript" src="../lib/angular/angular.min.js"></script>
+    <script type="text/javascript">
+        var app = angular.module('myApp', []);
+        app.directive('tkLink', function () {
+            return{
+               
+                template: '<a href="http://www.tkhts.com">Reusable Link for TKHTS</a>'
+            }
+        });
+
+    </script>
+
+
+</head>
+<body ng-app="myApp">
+<tk-link></tk-link>
+<div tk-link></div>
+<div class="tk-link"></div>
+<div class="tk-link"></div>
+<div class="tk-link"></div>
+
+
+
+
+
+
+
+
+
+
+
+</div>
+</body>
+</html>

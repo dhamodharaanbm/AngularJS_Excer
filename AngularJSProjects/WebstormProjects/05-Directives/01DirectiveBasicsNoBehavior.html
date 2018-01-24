@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Directives Basic Demo-Powered by TKHTS.COM</title>
+    <script type="text/javascript" src="../lib/angular/angular.min.js"></script>
+
+    <script type="text/javascript">
+
+        angular.module('myApp', [])
+                .controller('Controller', function ($scope) {
+
+                })
+                .directive('panel', function () {
+                    return {
+                        restrict: 'E',
+                        controller: function ($scope) {
+                            $scope.name = "Panel Directive";
+                            
+                        }
+
+                    }
+                })
+                .directive('mybutton', function () {
+                    return {
+
+                        controller: function ($scope) {
+                        $scope.name = "Button Directive";
+			 
+                            
+                        }
+
+                    }
+                });</script>
+
+</head>
+<body>
+<div ng-app="myApp">
+    <div ng-controller="Controller">
+        <panel mybutton></panel>
+    </div>
+
+
+</div>
+</body>
+</html>

@@ -1,0 +1,9 @@
+1. Project Import
+File-->Open-->Specify the path of project
+
+2. Angular Plugin Installation
+File-->Settings-->Install JetBrains Plugin--> AngularJS
+https://github.com/JetBrains/intellij-plugins/tree/master/AngularJS
+
+3. How to Check TODO List
+View--> Tool Windows --> TODO

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta charset="ISO-8859-1">
+<title>Clock Controller Inside Module-Powered by TKHTS.COM</title>
+<script type="text/javascript" src="../lib/angular/angular.min.js"></script>
+
+<script type="text/javascript">
+var moduleVar = angular.module("myModule",[]);  // The first argument is the name of the Module and [] represents the dependency on some other module
+
+function clockController($scope, $timeout){  // Creating Controller
+	var updateClock = function(){  // Creating Anonymous function 
+	$scope.clockdata = new Date();
+	};
+
+    $timeout(function() {
+        $scope.$apply(updateClock)
+        console.log("TimedOut")
+    }, 5000);
+
+//	setInterval(function(){$scope.$apply(updateClock)},1000);  // Call in every 1 sec
+	updateClock();  // First time Call
+}
+moduleVar.controller("clock-controller",clockController);  // Bind Controller with Module
+</script>
+</head>
+<body >
+
+<div ng-app="myModule" ng-controller="clock-controller" >
+<h2>Time is {{clockdata}}</h2><br>
+
+
+</div>
+
+</body>
+</html>

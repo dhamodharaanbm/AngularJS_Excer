@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Parsing Expression Internals-Powered by TKHTS.COM</title>
+    <script type="text/javascript" src="../lib/angular/angular.min.js"></script>
+    <script type="text/javascript">
+
+
+        var module = angular.module("parseModule", []);
+
+
+        function parseController($scope, $parse) {
+            $scope.parseResult = 'Tst';
+            console.log($scope);
+            
+
+
+            $scope.$watch('expr', function (newVal, oldVal, scope) { // Watch the Input Expression
+                if (newVal !== oldVal) {
+                    console.log(scope);
+
+                    console.log("NewVal " + newVal);
+                    console.log("OldVal " + oldVal);
+
+                    scope.parseResult = 'Welcome ' + newVal + ' ' + new Date();
+//                    $scope.expr='W' + newVal;
+                    console.log('Modifying Result');
+                }
+            });
+        }
+        module.controller("parse-controller", parseController);
+    </script>
+</head>
+<body>
+<div ng-app="parseModule" ng-controller="parse-controller">
+    <label>Expression</label>
+    <input type="text" ng-model="expr" placeholder="Type Expression Here">
+    <br>
+
+
+    <h4>Modified Expression {{parseResult}}</h4>
+</div>
+</body>
+</html>

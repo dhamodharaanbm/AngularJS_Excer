@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+<head>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/foundation/5.1.1/css/foundation.min.css"/>
+    <script src="../lib/angular/angular.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var app = angular.module('taskApp', []);
+
+        app.controller('company', function ($scope) {
+            $scope.data = "message";
+            console.log($scope);
+        });
+
+        app.directive("employee", function () {
+            return {
+                restrict: "E",
+                scope:{},
+                template: '<input type="text" ng-model="name">{{name}}',
+                link: function(scope, element, attrs){
+                    console.log(scope);
+                    console.log(attrs.id);
+                }
+
+            }
+        })
+    </script>
+    <title>Understanding Isolate Scope</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div ng-app="taskApp">
+
+    <div ng-controller="company">
+
+        <employee id="123"></employee>
+        <employee id="23"></employee>
+
+
+    </div>
+
+
+</div>
+</body>
+</html>

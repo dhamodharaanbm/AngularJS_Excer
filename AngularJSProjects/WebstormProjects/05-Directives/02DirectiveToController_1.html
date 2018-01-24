@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+
+        <script src="../lib/angular/angular.min.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            
+            var app = angular.module("tempApp" , []);
+            
+            app.controller("AppController", function($scope){
+                console.log($scope);
+                $scope.loadTempreture = function(){
+                    alert("Loading Tempreture");
+                }   
+                $scope.removeTempreture = function(){
+                    alert("Remove Tempreture");
+                }  
+            });
+            
+            app.directive("enter", function(){
+                return function(scope, element, attrs){
+                    console.log(scope);
+                    element.bind("mouseenter", function(){
+                        console.log('Mouse Enter Event');
+                        console.log(attrs.enter);
+                        scope.$apply(attrs.enter);
+                    })
+                }
+            })
+        </script>
+        
+        <title>Directive2Controller</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div ng-app="tempApp">
+
+            <div ng-controller="AppController">
+                <div enter="removeTempreture()">Tempreture Application</div>
+            </div>    
+        </div>
+        
+    </body>
+</html>

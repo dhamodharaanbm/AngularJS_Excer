@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <title>Without Angular with JQuery Demo-Powered by TKHTS.COM</title>
+        <script src="../lib/angular/angular.js" type="text/javascript"></script>
+        <script src="../lib/angular/angular-route.js" type="text/javascript"></script>
+        <script type="text/javascript">
+
+            var myApp = angular.module("myApp", ['ngRoute']);
+
+            myApp.config(function($routeProvider) {
+
+                $routeProvider
+                        .when('/test', {
+                            templateUrl: "test.html",
+                            controller: "AppCtrl",
+                            resolve: {
+                                loadData: myApp.loadData,
+                                prepareData: myApp.prepareData
+                            }
+                        })
+                        .otherwise({
+                            template: "No PAges"
+                        })
+
+
+            });
+
+            myApp.controller("AppCtrl", function($scope,$route) {
+
+                console.log($route);
+                $scope.model = {message: "Puneet"};
+                
+            });
+
+
+        myApp.loadData = function($q, $timeout) {
+                    var defer = $q.defer();
+                    $timeout(function() {
+//                        defer.reject("Network Issue, not able to establish connection");
+                        //defer.resolve("Load Data Is Resolved");
+                        console.log("Load Data");
+                    }, 2000);
+
+                    return defer.promise;
+                }
+                
+           myApp.prepareData = function($q, $timeout) {
+                    var defer = $q.defer();
+
+               $timeout(function() {
+//                        defer.reject("Preparing Data");
+                   defer.resolve("Prep Data Is Resolved");
+
+                        console.log("Preparing Data");
+                    }, 5000);
+
+                    return defer.promise;
+                }
+        </script>
+
+
+    </head>
+    <body>
+
+        <div ng-app="myApp">
+            <ng-view></ng-view>
+        </div>
+    </body>
+</html>

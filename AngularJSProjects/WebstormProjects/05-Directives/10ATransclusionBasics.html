@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/foundation/5.1.1/css/foundation.min.css"/>
+        <script src="../lib/angular/angular.min.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            var app = angular.module('phoneApp', []);
+
+
+
+            app.directive("panel", function() {
+                return {
+                    restrict: "E",
+//                    scope: {},
+                    controller: function($scope) {
+                        console.log($scope);
+                        $scope.name = "My Panel";
+                        console.log("Panel Scope" + $scope.name);
+
+                    }
+                }
+            })
+            app.directive("mybutton", function(){
+
+            return {
+            require: "panel",
+                    requires: "E",
+                    controller: function($scope) {
+                    console.log($scope);
+                     $scope.name = "My Button";
+                        console.log("Button Scope" + $scope.name);
+                    }
+            
+
+            }
+            })
+        </script>
+        <title>Understanding Isolate Scope =</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div ng-app="phoneApp">
+
+            <panel mybutton>                  
+            </panel>
+
+
+
+        </div>
+    </body>
+</html>

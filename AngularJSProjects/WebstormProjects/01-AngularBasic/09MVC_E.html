@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Calc Controller With Click Event-Powered by TKHTS.COM</title>
+    <script type="text/javascript" src="../lib/angular/angular.min.js"></script>
+
+
+</head>
+<body ng-app="myCalcModule">
+<div ng-controller="calc-controller" >
+    <label>First Number</label>
+    <input type="text" ng-model="firstNumber" placeholder="Type First Number Here" >
+    <label>Second Number</label>
+    <input type="text" ng-model="secondNumber" placeholder="Type Second Number Here">
+    <b><label>Result</label> {{result}}</b>
+    <br>
+    <button ng-click="add(10)">Add</button>
+    
+
+</div>
+<script type="text/javascript">
+
+      var app = angular.module("myCalcModule", []);
+
+      app.controller('calc-controller', function($scope){
+      $scope.add = function(f) {
+        $scope.result = 10 ;
+        });
+      
+//    TODO 3. Add Methods in Controller (add, subtract, multiply and divide)
+
+</script>
+</body>
+</html>

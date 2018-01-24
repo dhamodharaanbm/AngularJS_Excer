@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <title>Without Angular with JQuery Demo-Powered by TKHTS.COM</title>
+        <script src="../lib/angular/angular.js" type="text/javascript"></script>
+        <script src="../lib/angular/angular-route.js" type="text/javascript"></script>
+        <script type="text/javascript">
+
+            var myApp = angular.module("myApp", ['ngRoute']);
+
+
+           /* myApp.config(function($routeProvider) {
+
+                $routeProvider
+                        .when('/test', {
+                            templateUrl: "test.html",
+                            controller: "AppCtrl"
+                        })
+                        .otherwise({
+                            template: "No PAges"
+                        })
+            });
+*/
+            myApp.controller("AppCtrl", function($scope, $q) {
+//                console.log($q);
+
+                var defer = $q.defer();
+
+                defer.promise
+                        .then(function(value) {
+//                            alert("Promise fulfilled")
+                            alert("Promise has been fulfilled.. let me do something for you");
+                            alert(value);
+                            return  "Second";
+                        })
+                        .then(function(value) {
+                            alert(value);
+                            return "Third";
+                        })
+                        .then(function(value) {
+                            alert(value);
+                            return  "wickest";
+                        })
+
+               defer.resolve("First");
+
+                $scope.model = {message: "Puneet"};
+            });
+
+        </script>
+
+
+    </head>
+    <body>
+
+        <div ng-app="myApp">
+            <div ng-controller="AppCtrl">
+                {{model.message}}
+
+            </div>
+
+           <!-- <ng-view></ng-view>-->
+        </div>
+    </body>
+</html>

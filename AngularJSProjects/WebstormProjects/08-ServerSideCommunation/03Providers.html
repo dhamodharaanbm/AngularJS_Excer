@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="../lib/angular/angular.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+
+        var myApp = angular.module('myApp', []);
+
+        
+
+        //factory style, more involved but more sophisticated
+        myApp.factory('helloWorldFromFactory', function() {
+            return {
+                sayHello: function() {
+                    return $http.get("https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyCiUgMUATu5HxO2ZneBu3og4P6iq8saHPQ&query=hotelsinparis")
+                }
+            };
+        });
+
+       
+
+        
+
+
+        function MyCtrl($scope, helloWorld, helloWorldFromFactory, helloWorldFromService) {
+
+            $scope.hellos = [
+                
+                helloWorldFromFactory.sayHello(),
+                
+
+            console.log($scope.hellos);
+        }
+
+    </script>
+</head>
+<body ng-app="myApp">
+<div ng-controller="MyCtrl">
+    {{hellos}}
+</div>
+
+</body>
+</html>

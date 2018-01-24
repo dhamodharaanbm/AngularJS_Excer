@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>First SPA App</title>
+
+    <script src="../lib/angular/angular.js" type="text/javascript"></script>
+    <script src="../lib/angular/angular-route.js" type="text/javascript"></script>
+    <script type="text/javascript">
+
+        var myApp = angular.module("myApp", ['ngRoute']);
+
+        /*myApp.config(function ($routeProvider) {
+         $routeProvider.when("/", {
+         templateUrl: "test.html"
+         //                        controller: "AppCtrl"
+         }).when("/address/:country/:city/:street", {
+         templateUrl: "test.html",
+         controller: "AppCtrl"
+         }).otherwise({
+         redirectTo: ("/")
+         //                        template: "Page Not Found"
+         })
+
+
+         });*/
+
+        myApp.controller("AppCtrl", function ($scope, $q) {
+//            console.log($route);
+            /* console.log($routeParams.country);*/
+            $scope.data = "Some value";
+
+            var defer = $q.defer();
+
+            defer.promise
+                    .then(function(value) {
+                        alert(value);
+                        return  "Second";
+                    })
+                    .then(function(value) {
+                        alert(value);
+                        return "Third";
+                    })
+                    .then(function(value) {
+                        alert(value);
+                        return  "wickest";
+                    })
+
+            defer.reject("First");
+
+
+        })
+
+
+    </script>
+
+</head>
+<body>
+
+
+<div ng-app="myApp">
+    <div ng-controller="AppCtrl"></div>
+</div>
+
+
+</body>
+</html>

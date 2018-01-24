@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+<head>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/foundation/5.1.1/css/foundation.min.css"/>
+    <script src="../lib/angular/angular.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var formApp = angular.module('FormApp', []);
+        formApp.controller('FormController', [
+            '$scope', '$window', '$http',
+            function ($scope, $window, $http) {
+                $scope.messages = [];
+                // AngularJS will populate this object with input
+                // values based on the data-ng-model mappings.
+                $scope.data = {};
+                $scope.submit = function () {
+                    $http({
+                        method: 'POST', url: './form.do',
+                        data: $scope.data
+                    }).
+                            success(function (data, status, headers, config) {
+                                $window.location.replace('./confirm.html');
+                            }).
+                            error(function (data, status, headers, config) {
+                                if (status == 400) {
+                                    $scope.messages = data;
+                                } else {
+                                    alert('Unexpected server error.');
+                                }
+                            });
+                };
+            }]);
+    </script>
+    <title>Understanding Isolate Scope =</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body ng-App="FormApp" data-ng-controller="FormController">
+
+<h1>Please enter your personal information:</h1>
+
+<ul>
+
+    <li data-ng-repeat="message in messages">{{message}}</li>
+
+</ul>
+<div>
+
+    <label>First name:</label>
+
+    <input data-ng-model="data.firstName" type="text">
+
+</div>
+
+<div>
+
+    <label>Age:</label>
+
+    <input data-ng-model="data.age" type="text">
+
+</div>
+
+<div>
+
+    <input data-ng-click="submit()" type="button"
+
+           value="Submit the form">
+</div>
+
+</body>
+
+</html>

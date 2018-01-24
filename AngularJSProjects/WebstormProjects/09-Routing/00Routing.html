@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div ng-app="myApp">
+    <ng-view></ng-view>
+</div>
+7
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+
+<script src="angular-route.js"></script>
+
+<script>
+    var app = angular.module('myApp', ['ngRoute']);
+
+
+    app.controller('AppCtrl', function($scope,$routeParams,$route){
+        $scope.message = 'Some Value';
+        console.log($route);
+    })
+
+    app.config(function ($routeProvider) {
+        $routeProvider.when("/", {
+            templateUrl: 'test.html',
+            controller: 'AppCtrl'
+        })
+                .when("/aboutus", {
+                    templateUrl: 'test2.html'
+
+                }).
+                otherwise({
+//                    template: 'Error PAge'
+                    redirectTo: "/"
+                }
+                )
+    });
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+    <script src="../lib/angular/angular.js" type="text/javascript"></script>
+    <script src="../lib/angular/angular-route.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var myApp = angular.module("myApp", ['ngRoute']);
+        myApp.controller('AppCtrl', function($scope,$route){
+            console.log($route)
+            $scope.data = {message: 'Contents of the Home Page'}
+        });
+
+        myApp.controller('TestCtrl', function($scope,$routeParams){
+            console.log($routeParams);
+            console.log($routeParams.search);
+            $scope.name = $routeParams.search;
+            $scope.data = {message: 'Contents of the Payments Page'}
+        });
+
+        myApp.config(function ($routeProvider) {
+            $routeProvider
+                    .when("/", {
+                        templateUrl: 'test.html',
+                        controller: 'AppCtrl'
+                    })
+                    .when("/pd", {
+                        template: '' +
+                                '<a href=\"SimpleRouting.html#/payment/puneet\">Next Page</a>'
+                    })
+                    .when("/payment/:name", {
+                        templateUrl: 'payment.html',
+                        controller: 'TestCtrl'
+
+                    })
+                    .when("/confirm", {
+                        template: 'Contents of the Confirm Page'
+                    })
+                    .otherwise({
+                        redirectTo : "/"
+                    })
+        });
+
+
+        /* myApp.controller('homeCtrl', function ($scope, $routeParams) {
+         console.log($routeParams);
+         $scope.data = {message:"Some Data from Controller"}
+         });
+
+         myApp.config(function ($routeProvider) {
+         $routeProvider
+         .when("/", {
+         templateUrl: 'test.html',
+         controller: "homeCtrl"
+         })
+         .when("/articles:/title:/author", {
+         template: "This is the Articles page Content",
+         controller: "homeCtrl",
+         redirectTo: function (routeParams, path, search) {
+         console.log(routeParams.title);
+         console.log(path);
+         console.log(search);
+         return "/";
+         }
+         })
+         .when("/videos", {
+         template: "This is the Videos page Content"
+         })
+         .otherwise({
+         redirectTo: '/'
+         //                        template: 'Error Page'
+         })
+
+
+         });*/
+    </script>
+</head>
+<body>
+<div ng-app="myApp">
+    <ng-view></ng-view>
+</div>
+</body>
+</html>

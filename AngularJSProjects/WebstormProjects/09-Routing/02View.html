@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <title>Without Angular with JQuery Demo-Powered by TKHTS.COM</title>
+        <script src="angular.js" type="text/javascript"></script>
+        <script src="angular-route.js" type="text/javascript"></script>
+        <script type="text/javascript">
+
+            var myApp = angular.module("myApp", ['ngRoute']);
+
+            myApp.config(function($routeProvider) {
+
+                $routeProvider
+                        .when('/', {
+                            templateUrl: "test.html",
+                            controller: "AppCtrl"
+                        })
+                        .when('/Articles', {
+                            templateUrl: "test.html"
+                            //controller: "AppCtrl"
+                        })
+                        .otherwise({
+                            redirectTo: '/'
+                        })
+            });
+
+            myApp.controller("AppCtrl", function ($scope, $route) {
+                console.log($route);
+                //$route.routes[/] = {
+                //templateUrl: "test.html",
+                //controller: "AppCtrl"
+                // }
+
+
+                $scope.message = "Puneet";
+            });
+
+        </script>
+
+
+    </head>
+    <body>
+
+        <div ng-app="myApp">
+            <ng-view></ng-view>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Insert title here</title>
+    <script type="text/javascript" src="../lib/jquery/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../lib/angular/angular.min.js"></script>
+    <script type="text/javascript">
+
+        var myApp = angular.module("myApp", []);
+
+        myApp.controller('myController', function ($scope) {
+            //$scope.data ={ firstname: "Puneet", lastname: "Vashisht"};
+            console.log("First");
+            console.log($scope.data);
+            $scope.get = function() {
+                $.ajax({
+                    url: "employees.json",
+                    type: "GET",
+                    timeout: 10000, // 10 seconds for getting result, otherwise error.
+                    error:function() { alert("Temporary error. Please try again...");},
+
+                    success: function(data){
+                        console.log("Data Fetched Successfully");
+                        console.log(data.firstname);
+                        $scope.data = data;
+                        $scope.$apply();
+                    }
+
+                });
+            }
+        });
+
+
+
+    </script>
+</head>
+
+
+
+
+<body ng-app="myApp">
+<div ng-controller="myController">
+Test
+    <input type="text" ng-model="data.firstname" required>
+    <input type='text' ng-model="data.lastname" required>
+
+    <form ng-submit="update()"><input type="submit" value="update"></form>
+    <form ng-submit="get()"><input type="submit" value="get"></form>
+</div>
+</body>
+</html>

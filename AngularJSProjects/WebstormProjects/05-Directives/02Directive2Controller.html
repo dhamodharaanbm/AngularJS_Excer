@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Insert title here</title>
+    <script type="text/javascript" src="../lib/angular/angular.min.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/foundation/5.1.1/css/foundation.min.css"/>
+
+    <script type="text/javascript">
+
+        var myApp = angular.module('myApp', []);
+
+        myApp.directive("enter", function () {
+            return function (scope, element, attrs) {
+                element.bind("mouseenter", function () {
+                    console.log("I'm inside the div");
+                    element.addClass(attrs.enter);
+
+
+                })
+            }
+        })
+
+
+        myApp.directive('leave', function () {
+            return {
+
+                link: function (scope, element, attrs) {
+                    element.bind("mouseleave", function () {
+                        console.log("I'm leaving this div");
+                        element.removeClass("panel");
+                    });
+                }
+
+            };
+        });
+
+    </script>
+</head>
+<body>
+<div ng-app="myApp">
+    <div enter="panel" leave="">Some Content</div>
+</div>
+
+
+</body>
+</html>

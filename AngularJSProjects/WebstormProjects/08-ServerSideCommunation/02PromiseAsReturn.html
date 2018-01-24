@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<p>
+Notice that the $http object looks like we are passing in a callback method to call when the response
+comes back. This observation is not accurate: The method actually returns a promise.
+</p>
+<pre>
+var promise = $http({
+method: 'GET',
+url: '/api/users.json'
+});
+
+promise.then(function(resp) {
+// resp is a response object
+}, function(resp) {
+// resp with error
+});
+// OR we can use the success/error methods
+promise.success(function(data, status, headers, config) {
+// Handle successful responses
+});
+// error handling
+promise.error(function(data, status, headers, config) {
+// Handle non-successful responses
+});
+
+    </pre>
+</body>
+</html>

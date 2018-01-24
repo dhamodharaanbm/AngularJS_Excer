@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+<head>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/foundation/5.1.1/css/foundation.min.css"/>
+    <script src="../lib/angular/angular.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var myApp = angular.module('myApp', []);
+        function AvengersCtrl($scope) {
+            $scope.list = [{
+                'name': 'Puneet',
+                'status': 'awake'
+            }, {
+                'name': 'Sumeet',
+                'status': 'sleeping'
+            }, {
+                'name': 'Amit',
+                'status': 'awake'
+            }];
+        }
+    </script>
+    <title>Understanding Isolate Scope =</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div ng-app="myApp">
+    <div ng-controller="AvengersCtrl">
+        <!--Limit to 2: {{ ['a','b','c','d','e','f','g'] | limitTo:2 }}
+
+        <br>
+        Last 6: {{ 'San francisco is very cloudy' | limitTo:-6 }}
+        <br>
+        First 13: {{ 'San francisco is very cloudy' | limitTo:13 }}
+-->
+        <br>
+        Order By: {{ list | orderBy: '-name'}}
+
+    </div>
+</div>
+</body>
+</html>

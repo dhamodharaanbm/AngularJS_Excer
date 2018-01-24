@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Creating Directives Demo-Powered by TKHTS.COM</title>
+    <script type="text/javascript" src="../lib/angular/angular.min.js"></script>
+    <script type="text/javascript">
+        angular.module('myApp', [])
+
+                .controller('MainCtrl',function ($scope) {
+                    // $scope.color ='blue';
+                })
+                .directive('myDirective', function () {
+                    return {
+//                        restrict: 'EA', //C,E,A,M
+                        replace: true,
+                        template: '<p style="background-color:{{color}}">Hello World 123</p>',
+
+                        compile: function(tElem,attrs) {
+                            console.log('Called at compile time');
+                            return function(scope,elem,attrs) {
+                                console.log('Called at link time');
+                                elem.bind('click', function () {
+                                    elem.css('background-color', 'white');
+                                    scope.$apply(function () {
+                                        scope.color = "white";
+                                    });
+                                });
+                                elem.bind('mouseover', function () {
+                                    console.log('MouseOver');
+                                    elem.css('cursor', 'pointer');
+                                });
+                            };
+                        }
+
+                        /*link: function (scope, elem, attrs) {
+                            console.log('Called at link time');
+                            elem.bind('click', function () {
+                                elem.css('background-color', 'white');
+                                scope.$apply(function () {
+                                    scope.color = "white";
+                                });
+                            });
+                            elem.bind('mouseover', function () {
+                                console.log('MouseOver');
+                                elem.css('cursor', 'pointer');
+                            });
+                        }*/
+                    }
+                })
+    </script>
+
+
+</head>
+<body ng-app="myApp">
+<div ng-controller="MainCtrl">
+<!--<my-directive></my-directive>-->
+<input type="text" ng-model="color" placeholder="Enter a color"/>
+
+<div my-directive></div>
+<div my-directive></div>
+<div my-directive></div>
+<!--<div class="my-directive"></div>
+<!-- directive: my-directive -->
+
+
+</div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+            <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/foundation/5.1.1/css/foundation.min.css"/>
+            <script src="../lib/angular/angular.min.js" type="text/javascript"></script>
+            <script type="text/javascript">
+                var app = angular.module('phoneApp', []);
+                
+                app.controller("AppCtrl", function ($scope){
+                    $scope.leaveVoicemail = function (number, message) {
+                        alert("Number: " + number + "said: " +message)
+                    }
+                })
+                
+                app.directive("phone", function(){
+                    return{
+                        restrict: "E",
+                        scope:{
+                            number:"@",
+                            network:"=",
+                            makeCall:"&"
+                        },
+                        template: '<div class="panel">Number: {{number}} Network:<select ng-model="network" ng-options="net for net in networks"></select>' +
+                                '<input type="text" ng-model="value">' +
+                                '<div class="button" ng-click="makeCall({number: number, message: value})">Call Home!</div></div>',
+                        
+                        link: function (scope){
+                            scope.networks = ["Vodafone", "Airtel", "Idea"];
+                            scope.network = scope.networks[0]
+                        }
+                    }
+                })
+            </script>
+        <title>Understanding Isolate Scope =</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div ng-app="phoneApp">
+            <div ng-controller="AppCtrl">
+                <phone number="9999111855" network="network" make-call="leaveVoicemail(number, message)"></phone>
+                <phone number="3523932553" network="network" make-call="leaveVoicemail(number, message)"></phone>
+                <phone number="9114534545" network="network" make-call="leaveVoicemail(number, message)"></phone>
+            </div>            
+        </div>
+    </body>
+</html>

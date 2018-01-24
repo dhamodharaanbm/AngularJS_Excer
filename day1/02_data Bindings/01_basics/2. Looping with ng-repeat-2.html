@@ -1,0 +1,22 @@
+<html>
+<head>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.js"></script>
+</head>
+<body ng-app>
+<div ng-init="customers=[
+			{ name: 'john smith', city: 'Phoenix' },
+            { name: 'john doe', city: 'new york' },
+            { name: 'Heedy Wahlin', city: 'Chandler' },
+            { name: 'Thomas Winter', city: 'Seattle' }
+		]">
+    <h3>Looping with the ng-repeat Directive</h3>
+    <h4>Data to loop through is initialized using ng-init</h4>
+    <ul>
+	    Name: <input type="text" ng-model="name"/>&nbsp;&nbsp; {{ name }}
+
+        <li ng-repeat="show in customers | filter:name | orderBy:'city'">{{show.name + ' ' + show.city}} </li>
+    </ul>
+</div>
+
+</body>
+</html>

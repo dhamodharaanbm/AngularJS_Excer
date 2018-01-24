@@ -1,0 +1,21 @@
+﻿<html>
+<head>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.js"></script>
+</head>
+<body ng-app>
+<div class="container" ng-controller="SimpleController">
+    <h3>Adding a Simple Controller</h3>
+    <ul>
+        <li ng-repeat="name in names">{{name}}</li>
+    </ul>
+</div>
+
+<script>
+    function SimpleController($scope) {
+        $scope.names = ['Dave', 'Napur', 'Heedy', 'Shriva'];
+	}
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/foundation/5.1.1/css/foundation.min.css"/>
+        <script src="../lib/angular/angular.min.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            var myApp = angular.module('myApp', []);
+
+            myApp.factory('Avengers', function() {
+                var Avengers = {};
+
+                return Avengers;
+            })
+
+            function AvengersCtrl($scope, Avengers) {
+                $scope.avengers  = [{
+                    "name": "Danish Gahlout",
+                    "role": "S/W Developer / Techknow Heights",
+                    status: 2
+                },
+                    {
+                        "name": "Puneet vashisht",
+                        "role": "Senior S/W Developer / Techknow Heights"
+                        , status: 1
+                    },
+                    {
+                        "name": "Amit Srivastava",
+                        "role": "Senior S/W Developer / Techknow Heights"
+                        , status: null
+                    },
+                    {
+                        "name": "Robert Downey",
+                        "role": "Tony Stark / Techknow Heights"
+                        , status: 1
+                    },
+                    {
+                        "name": "Chris Evan",
+                        "role": "Steve Rogers / Techknow Heights"
+                        , status: 1
+                    },
+                    {
+                        "name": "Mark Ruffalo",
+                        "role": "Bruce Banner / Techknow Heights"
+                        , status: 1
+                    },
+                    {
+                        "name": "Scarlett Johanson",
+                        "role": "Natasha Romanof / Techknow Heights"
+                        , status: 1
+                    },
+                    {
+                        "name": "Tom ",
+                        "role": "Loki"
+                        , status: 1
+                    },
+                    {
+                        "name": "Chris",
+                        "role": "Thor"
+                        , status: 1
+                    }
+                ];
+                console.log($scope);
+                /*$scope.byStatusId = function(status1) {
+                    return function(avengers) {
+                        console.log(status1);
+                        return avengers.status == status1;
+                    }
+                }*/
+            }
+        </script>
+        <title>Understanding Isolate Scope =</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div ng-app="myApp">
+            <div ng-controller="AvengersCtrl">
+
+                <input type="text" ng-model="abc.$" placeholder="Search Everything">
+                <input type="text" ng-model="abc.name" placeholder="Search Name">
+                <input type="text" ng-model="abc.role" placeholder="Search Role">
+                <input type="text" ng-model="abc.status" placeholder="Search Status">
+                <table>
+                    <tr ng-repeat="actor in avengers | filter:abc">
+                        <td>{{$index + 1}}</td>
+                        <td>{{actor.name}}</td>
+                        <td>{{actor.role}}</td>
+                        <td>{{actor.status}}</td>
+                    </tr>
+                </table>
+
+                <!--<input type="text" ng-model="text1.$" placeholder="Search All" >
+                <input type="text" ng-model="text1.name" placeholder="Search By Name">
+                <input type="text" ng-model="text1.role"placeholder="Search By Role" >
+                <table>
+                    <tr ng-repeat="actor in avengers.cast | filter:text1">
+                       <td>{{$index+1}}</td>
+                        <td>{{actor.name}}</td>
+                        <td>{{actor.role}}</td>
+                        <td>{{actor.status}}</td>
+                    </tr>
+                </table>-->
+            </div>
+        </div>
+    </body>
+</html>

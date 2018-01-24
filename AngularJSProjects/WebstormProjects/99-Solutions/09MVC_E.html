@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Calc Controller With Click Event-Powered by TKHTS.COM</title>
+    <script type="text/javascript" src="../lib/angular/angular.min.js"></script>
+
+
+</head>
+<body ng-app="myCalcModule">
+<div ng-controller="calc-controller" >
+    <label>First Number</label>
+    <input type="text" ng-model="firstNumber" placeholder="Type First Number Here" >
+    <label>Second Number</label>
+    <input type="text" ng-model="secondNumber" placeholder="Type Second Number Here">
+    <b><label>Result</label> {{result}}</b>
+    <br>
+    <button ng-click="add()">Add</button>
+    <button ng-click="subtract()">Subtract</button>
+    <button ng-click="mul()">Multiply</button>
+    <button ng-click="divide()">Divide</button>
+
+
+</div>
+<script type="text/javascript">
+
+//    TODO 1. Add Module
+//    TODO 2. Add Controller
+//    TODO 3. Add Methods in Controller (add, subtract, multiply and divide)
+
+
+
+    var moduleVar = angular.module("myCalcModule",[]);  // The first argument is the name of the Module and [] represents the dependency on some other module
+moduleVar.controller("calc-controller",calculatorController);  // Bind Controller with Module
+    var calculatorController = function($scope){  // Creating Controller
+        console.log($scope);
+        $scope.result = 0;
+        $scope.add = function(){  // Creating Anonymous function
+            $scope.result = parseInt($scope.firstNumber) + parseInt($scope.secondNumber);
+        };
+        $scope.subtract = function(){
+            $scope.result = parseInt($scope.firstNumber) - parseInt($scope.secondNumber);
+        };
+        $scope.mul = function(){
+            $scope.result = parseInt($scope.firstNumber) * parseInt($scope.secondNumber);
+        };
+        $scope.divide = function(){
+            $scope.result = parseInt($scope.firstNumber) / parseInt($scope.secondNumber);
+        };
+    }
+
+</script>
+</body>
+</html>

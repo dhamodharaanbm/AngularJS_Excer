@@ -1,0 +1,5 @@
+GuitarID is guitar’s ID in data.json. Statement says, if routeParams have an ID of greater than 0(means second item or next item in data.json) then perform action in curly brackets. $scope.prevGuitar is variable declaration and prevGuitar is the same as we wrote in details.html file. prevGuitar is setting current routeParam to one less i.e if guitarID is 3, then prevGuitar will route to guitarID 2. $routeParams is in parentheses of number because it returns string and we need to convert that string into number and then subtract from it.
+
+Else says that, if guitarID is zero then take the length of array which in our case is 4 and subtract 1 from it so that we get id of last guitar in data.json.
+
+Next button: if guitarID is lesser than last guitar in array of data.json then add 1 to it and move to next guitar. Else, goto first guitarID in data.json

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Insert title here</title>
+    <script type="text/javascript" src="../lib/angular/angular.min.js"></script>
+    <script type="text/javascript">
+
+        var myApp = angular.module("myApp", []);
+
+        function PasswordCtrl($scope) {
+            $scope.password = '';
+            $scope.grade = function() {
+                var size = $scope.password.length;
+                if (size > 8) {
+                    $scope.strength = 'strong';
+                } else if (size > 3) {
+                    $scope.strength = 'medium';
+                } else {
+                    $scope.strength = 'weak';
+                }
+            };
+        }
+
+        describe('PasswordCtrl', function(){
+            var scope, ctrl;
+
+            beforeEach(inject(function($controller, $rootScope) {
+                scope = $rootScope.$new();
+                ctrl = $controller('PasswordCtrl', { $scope: scope });
+            }));
+
+            it('should change greeting value if name value is changed', function() {
+                $scope.password = 'abc';
+                $scope.grade();
+                expect($scope.strength).toEqual('weak');
+            });
+
+        });
+
+        /*var $scope = {};
+        var pc = $controller('PasswordCtrl', { $scope: $scope });
+        $scope.password = 'abc';
+        $scope.grade();
+        expect($scope.strength).toEqual('weak');*/
+
+    </script>
+</head>
+<body>
+
+<div ng-app="myApp">
+
+    <div ng-controller="PasswordCtrl">
+
+
+    </div>
+
+
+</div>
+
+
+</body>
+</html>
+
+
+      <!--  1. Show scope as same when element is inside
+        2. Isolate scope in directive
+        3. Show ordering relevance in both cases
+        4. Show dependency injection ways in controller-->

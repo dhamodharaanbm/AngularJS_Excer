@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+
+    <title>Scope In Controller Demo-Powered by TKHTS.COM</title>
+    <script type="text/javascript" src="../lib/angular/angular.min.js"></script>
+
+    <script type="text/javascript">
+
+        // Root Controller
+        function parentController($scope) { //003
+//                $scope.person = {fname: "Puneet", lname: "Vashisht"};
+            $scope.fname = "Puneet";
+           
+
+           
+            /* Define the members of the Person,and once one member is defined
+             so it will define the person type then u can access any member or add any member from the child
+             E.g. Add a New Member mname and name in the child
+             */
+        }
+        function childController($scope) { //004
+
+            $scope.lname = "Vashisht";
+
+//                $scope.person.mname = "Kumar"
+//                $scope.person.name = $scope.person.fname + $scope.person.mname + $scope.person.lname;
+            
+        }
+    </script>
+</head>
+<body>
+
+
+
+<div ng-controller="parentController">
+    <input type="text" ng-model="fname">   {{fname + ' ' + lname}} & {{title}} : {{person.name}}
+    <div ng-controller="childController">
+        <input type="text" ng-model="lname"> {{person.mname}} : {{fname + ' ' + lname}} & {{title}} : {{person.lname}}
+    </div>
+</div>
+<input type="text" ng-model="title" placeholder="Type in Title Here">
+
+
+ 
+</body>
+</html>

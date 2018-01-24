@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <title>Without Angular with JQuery Demo-Powered by TKHTS.COM</title>
+        <script src="../lib/angular/angular.js" type="text/javascript"></script>
+        <script src="../lib/angular/angular-route.js" type="text/javascript"></script>
+         <script type="text/javascript">
+
+            var myApp = angular.module("myApp", ['ngRoute']);
+
+            myApp.config(function($routeProvider) {
+
+                $routeProvider
+                        .when('/address/:country/:city/:pin', {
+                            controller: "AppCtrl",
+                           redirectTo:  function(routeParams, path, search){
+                                console.log(routeParams);
+                                console.log(path);
+                                console.log(search);
+                                return routeParams.city;
+                            }
+                        })
+                         .when('/bangalore', {
+                            template: "This will take me to login page",
+                            controller: "AppCtrl"
+                        })
+                        .when('/pune', {
+                            template: "Pune City",
+                            controller: "AppCtrl"
+                        })
+                        .when('/', {
+                            template: "Default Path",
+                            controller: "AppCtrl"
+                        })
+
+            });
+
+            myApp.controller("AppCtrl", function($scope, $routeParams, $route) {
+                console.log($route);
+                console.log($routeParams.city);
+                console.log($routeParams.country);
+                console.log($routeParams.pin);
+                $scope.model = {message: $routeParams.country};
+                 /*var defer = $q.defer();
+                
+                 return deferred.promise;*/
+            });
+
+        </script>
+
+
+    </head>
+    <body>
+
+        <div ng-app="myApp">
+            <ng-view></ng-view>
+        </div>
+    </body>
+</html>

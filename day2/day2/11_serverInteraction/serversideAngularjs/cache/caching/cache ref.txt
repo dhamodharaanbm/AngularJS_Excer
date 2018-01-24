@@ -1,0 +1,3 @@
+http://slides.com/jdobry/data-management-caching-with-angular-js#/15
+http://www.phase2technology.com/blog/caching-json-arrays-using-cachefactory-in-angularjs-1-2-x/
+https://github.com/jmdobry/angular-cache

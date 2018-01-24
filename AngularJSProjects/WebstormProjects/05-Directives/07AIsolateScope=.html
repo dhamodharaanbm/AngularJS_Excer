@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+            <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/foundation/5.1.1/css/foundation.min.css"/>
+            <script src="../lib/angular/angular.min.js" type="text/javascript"></script>
+            <script type="text/javascript">
+                var app = angular.module('drinkApp', []);
+                
+                app.controller("AppCtrl", function($scope){
+                    $scope.ctrlFlavor = "blackberry"
+                })
+                
+                app.directive("drink", function(){
+                    return{
+                        scope:{
+                            flavor: "="
+                        },
+                        template: '<div>{{flavor}}</div>'
+                        
+                    }
+                })
+            </script>
+        <title>Understanding Isolate Scope</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div ng-app="drinkApp">
+            <div ng-controller="AppCtrl">
+                Controller:
+                <input type="text" ng-model="ctrlFlavor">
+                <hr/>
+                Directive:
+                <div drink flavor="ctrlFlavor"></div>
+            </div>
+        </div>
+    </body>
+</html>

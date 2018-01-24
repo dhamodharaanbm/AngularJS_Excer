@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Without Angular with JQuery Demo-Powered by TKHTS.COM</title>
+    <script src="../lib/angular/angular.js" type="text/javascript"></script>
+    <script src="../lib/angular/angular-route.js" type="text/javascript"></script>
+    <script type="text/javascript">
+
+        var myApp = angular.module("myApp", ['ngRoute']);
+
+        myApp.config(function ($routeProvider) {
+
+            $routeProvider
+                    .when('/test', {
+                        templateUrl: "test1.html",
+                        controller: "ViewCtrl",
+                        resolve: {
+                            loadData: viewCtrl.loadData
+                        }
+                    })
+                    .when('/new', {
+                        template: "New Page",
+                        controller: "AppCtrl"
+
+                    })
+                    .otherwise({
+                        template: "No PAges"
+                    })
+
+
+        });
+
+        myApp.controller("AppCtrl", function ($rootScope,$location) {
+            console.log("Test");
+            $rootScope.$on("$routeChangeError", function (event, current, previous, restriction) {
+                console.log("Routes failed to change because : " + restriction);
+                     $location.path("/new")
+            })
+//                console.log($routeScope);
+//                $scope.model = {message: "Puneet"};
+
+        });
+
+        //
+
+        var viewCtrl = myApp.controller("ViewCtrl", function ($scope, $location) {
+            $scope.model = {message: "Puneet"};
+            $scope.routeChange = function () {
+                //console.log($scope);
+                $location.path("/new");
+            }
+
+
+        });
+
+
+        viewCtrl.loadData = function ($q, $timeout) {
+            var defer = $q.defer();
+            $timeout(function () {
+                defer.reject("Failure");
+//                        console.log("Load Data");
+            }, 2000);
+
+            return defer.promise;
+        }
+
+    </script>
+
+
+</head>
+<body>
+
+<div ng-app="myApp" ng-controller="AppCtrl">
+    <ng-view></ng-view>
+</div>
+</body>
+</html>

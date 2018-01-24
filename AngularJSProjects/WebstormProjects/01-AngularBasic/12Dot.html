@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Insert title here</title>
+<script type="text/javascript" src="../lib/angular/angular.min.js"></script>
+<script type="text/javascript">
+
+function firstController($scope){
+//	console.log($scope);
+//    $scope.data.message = 'Puneet'
+//  $scope.data = {data.message:'Puneet'}
+}
+function secondController($scope){
+//	console.log($scope);
+}
+
+</script>
+</head>
+<body>
+
+ 	<div ng-app>
+		<input type="text" ng-model="data.message">
+		<h1>{{data.message}}</h1>
+
+		<div ng-controller="firstController">
+			<input type="text" ng-model="data.message">
+			<h1>{{data.message}}</h1>
+		</div>
+
+		<div ng-controller="secondController">
+			<input type="text" ng-model="data.message">
+			<h1>{{data.message}}</h1>
+		</div>
+
+	</div> 
+
+</body>
+</html>

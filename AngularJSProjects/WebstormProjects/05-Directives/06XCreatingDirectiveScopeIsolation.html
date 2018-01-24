@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Creating Directives Demo-Powered by TKHTS.COM</title>
+<script type="text/javascript" src="../lib/angular/angular.min.js"></script>
+<script type="text/javascript">
+	angular
+			.module('myApp', [])
+			.directive(
+					'myDirective',
+					function() {
+return {
+							restrict : 'E', //C,E,A,M
+							scope: {
+								someAttr: '@', // binding strategy
+								myLinkText: '@' // binding strategy
+								},
+							replace : true,
+							template: '<a href="{{myUrl}}">{{myLinkText}}</a>'
+						}
+					})
+</script>
+
+
+</head>
+<body ng-app="myApp">
+
+		<my-directive></my-directive>
+		<!--<div my-directive></div>
+		<div class="my-directive"></div>
+		<!-- directive: my-directive -->
+
+
+
+<div my-directive some-attr="{{ 'http://' + 'google.com' }}" my-link-text="Click me to go to Google">
+
+</div>
+</body>
+</html>

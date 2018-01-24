@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html ng-app>
+    <head>
+
+        <title>Controller Basics Demo-Powered by TKHTS.COM</title>
+        <script type="text/javascript" src="../lib/angular/angular.min.js"></script>
+
+
+        
+
+        <script type="text/javascript">
+            angular.module('MyController', function($scope) {
+                $scope.shouldShowLogin = true;
+                $scope.showLogin = function() {
+                    $scope.shouldShowLogin = !$scope.shouldShowLogin;
+                }
+                $scope.clickButton = function() {
+                    $("#btn span").html("Clicked");
+                }
+                $scope.onLogin = function(user) {
+                    $http({
+                        method: 'POST',
+                        url: '/login',
+                        data: {
+                            user: user
+                        }
+                    }).success(function(data) {
+                        // user
+                    })
+                }
+            })
+
+            angular.module('MyController', function($scope, UserSrv) {
+// The content can be controlled by directives
+                $scope.onLogin = function(user) {
+                    UserSrv.runLogin(user);
+                }
+            })
+        </script>
+    </head>
+    <body>
+
+        <div ng-controller="myController" >
+
+            Hello Now I am Getting the Data from  MyController {{data.Message}}
+        </div>
+
+    </body>
+</html>

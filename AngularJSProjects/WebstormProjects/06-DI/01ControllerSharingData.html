@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Insert title here</title>
+<script type="text/javascript" src="../lib/angular/angular.min.js"></script>
+<script type="text/javascript">
+
+var myApp = angular.module("myApp", []);
+
+myApp.factory('Service', function(){
+	return {message : "I am coming from service"};
+});
+myApp.controller('firstController', ['$scope', 'Service', function(scp, serv){
+    scp.data = serv;
+}])
+//myApp.controller('firstController', function( Service, $scope){
+
+        /*console.log(b);
+        console.log(a);*/
+//    scp.data = serv;
+        
+//});
+
+myApp.controller('secondController',['$scope', 'Service', function(a, serv){
+       /* console.log($scope);
+        console.log(Service);*/
+    a.data = serv;
+    console.log(a);
+        
+}]);
+/*
+myApp.controller('firstController', function(myscope) {
+//function firstController($scope, Service){
+//	$scope.data = Service;
+console.log("Defined");
+console.log(myscope);
+});
+
+myApp.controller('secondController', function($scope, $http1) {
+//function secondController($scope, Service){
+//	$scope.data = Service;
+console.log($scope);
+});
+*/
+// firstController['$inject'] = ['$scope', 'Service'];
+</script>
+</head>
+<body>
+
+ 	<div ng-app= "myApp">
+	
+
+		<div ng-controller="firstController">
+			<input type="text" ng-model="data.message">
+			<h1>{{data.message}}</h1>
+		</div>
+		
+		<div ng-controller="secondController">
+			<input type="text" ng-model="data.message">
+			<h1>{{data.message}}</h1>
+		</div>
+
+	</div> 
+
+
+
+</body>
+</html>

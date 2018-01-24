@@ -1,0 +1,23 @@
+var myapp = angular.module('MyApp', []);
+
+//Create a Filter
+myapp.filter("reversetext", function() {
+
+        //Defining the filter function
+         return function(input) {
+ 
+                 var result = "";
+                 input = input || "";
+
+                for (var i=0; i<input.length; i++) {
+                       result = input.charAt(i) + result;
+                 }
+    
+                return result;
+         };
+});
+---------------
+<body ng-app="MyApp">
+       <input type="text" ng-model="text" placeholder="Enter text"/>
+        <p>Filtered Reverse Input: {{ text | reversetext }}</p>
+</body>

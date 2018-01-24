@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Creating Directives Demo-Powered by TKHTS.COM</title>
+    <script type="text/javascript" src="../lib/angular/angular.min.js"></script>
+    <script type="text/javascript">
+        angular.module('simpleDirective', [])
+                .controller('Controller', function ($scope) {
+                    $scope.customer = {
+                        name: 'Puneet',
+                        address: 'New Delhi'
+                    };
+                    console.log($scope);
+                })
+                .directive('myCustomer', function () {
+                    return {
+                        template: 'Name: {{customer.name}} Address: {{customer.address}}'
+
+                    };
+
+                });
+    </script>
+
+
+</head>
+<body ng-app="simpleDirective">
+
+<div my-customer=""></div>
+<div ng-controller="Controller">
+
+</div>
+
+</body>
+</html>

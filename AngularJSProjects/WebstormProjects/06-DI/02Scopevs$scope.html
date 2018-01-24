@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Insert title here</title>
+    <script type="text/javascript" src="../lib/angular/angular.min.js"></script>
+    <script type="text/javascript">
+
+        var myApp = angular.module("myApp", []);
+
+        myApp.controller('firstController', function ($scope) {
+            $scope.data = {message: 'SomeData'};
+            console.log($scope);
+        });
+
+        myApp.directive("myDirective", function () {
+            return{
+                restrict:'E',
+                scope: {},
+                template: '<a href="http://google.com">Click me to go to Google < /a>',
+                link: function (element,scope, attrs) {
+                        //console.log('In linking ');
+                        console.log(element);
+                }
+            }
+        })
+
+
+    </script>
+</head>
+<body>
+,
+<div ng-app="myApp">
+
+
+    <div ng-controller="firstController">
+        <my-directive></my-directive>
+        {{data.message}}
+
+    </div>
+
+
+</div>
+
+
+</body>
+</html>
+
+
+      <!--  1. Show scope as same when element is inside
+        2. Isolate scope in directive
+        3. Show ordering relevance in both cases
+        4. Show dependency injection ways in controller-->
